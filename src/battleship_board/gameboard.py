@@ -8,6 +8,7 @@ class BattleShip:
         self.title = title
         self.board = np.zeros((size, size))
         self.ships = []
+        self.hit_map = np.zeros((size, size))
 
 
 
@@ -30,22 +31,55 @@ class BattleShip:
 
         # place the ship on the board
         for point in the_ship.get_points():
-            self.board[point[0], point[1]] = 1
+            self.board[point[0], point[1]] = len( self.ships )+1
         self.ships.append(the_ship)
 
         return 0
 
     def print_board(self):
-        print(self.board)
+        """
+        prints the game board in a nice format
+        :return:
+        """
+        print("\033[32m--------------------------------------------")
+        print("\033[32m   |", end=' ')
+        for i in range( self.boardSize ):
+            print("%0.0d |"%i, end=' ')
+        print("\n\033[32m--------------------------------------------")
+
+        for i in range( self.boardSize):
+            print( "|\033[32m %0.0d|" %i , end=' ' )
+            for j in range(self.boardSize):
+                if self.hit_map[i,j] ==1 and self.board[i,j]!=0:
+                    print("\033[31m%0.0d \033[32m|" % self.board[i][j] , end=' ')
+                else :
+                    print("\033[37m%0.0d \033[32m|" % self.board[i][j], end=' ')
+            print("\n\033[32m--------------------------------------------")
+        print("\033[0m")
+
 
 class Ship:
+    """
+    Defines ship objects
+    """
     def __init__(self, start, length,orientation, title=None ):
+        """
+
+        :param start:
+        :param length:
+        :param orientation:
+        :param title:
+        """
         self.start = start
         self.length = length
         self.title = title
         self.orientation = orientation
 
     def get_points(self):
+        """
+        returns the set of point in which the ship is represented
+        :return: list of points where ship is
+        """
         points = []
         if self.orientation == 'h':
             for count in range(self.length):
