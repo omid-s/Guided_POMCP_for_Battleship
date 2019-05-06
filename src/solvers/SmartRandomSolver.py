@@ -15,7 +15,7 @@ class SmartRandomSolver(Solver):
 
     def solve(self):
         """
-        creates a naive always runnig loop until the game is solved
+        create a random player with memory not to repeat the same game multiple times
         :return:
         """
         start = timer()
