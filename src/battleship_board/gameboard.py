@@ -1,5 +1,6 @@
 # defines the game board, it's size and ships
 import numpy as np
+import random
 
 class BattleShip:
 
@@ -86,6 +87,20 @@ class BattleShip:
         return end_of_game, was_hit, ship_sank
 
 
+
+    def generate_random(self, ship_sizes):
+        """
+        generates a random set of non coliding ships based on given sizes
+        :param ship_sizes: a list of ship sizes desired
+        :return:
+        """
+        for pick in ship_sizes:
+            while True:
+                x = Ship.random_ship(pick, self.boardSize)
+                ret = self.add_ship(x)
+                if ret == 0:
+                    break
+
 class Ship:
     """
     Defines ship objects
@@ -117,3 +132,9 @@ class Ship:
                 points.append([self.start[0]+count, self.start[1]])
 
         return points
+
+    def random_ship(size, board_size):
+        return Ship([random.randint(0, board_size), random.randint(0, board_size)],
+                    size,
+                    random.sample(["h", "v"], 1)[0]
+                    )
