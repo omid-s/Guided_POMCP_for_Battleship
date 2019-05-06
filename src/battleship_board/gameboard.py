@@ -47,11 +47,13 @@ class BattleShip:
             print("%0.0d |"%i, end=' ')
         print("\n\033[32m--------------------------------------------")
 
-        for i in range( self.boardSize):
+        for i in range(self.boardSize):
             print( "|\033[32m %0.0d|" %i , end=' ' )
             for j in range(self.boardSize):
                 if self.hit_map[i,j] ==1 and self.board[i,j]!=0:
                     print("\033[31m%0.0d \033[32m|" % self.board[i][j] , end=' ')
+                elif self.hit_map[i,j] !=1 and self.board[i,j]!=0:
+                    print("\033[34m%0.0d \033[32m|" % self.board[i][j], end=' ')
                 else :
                     print("\033[37m%0.0d \033[32m|" % self.board[i][j], end=' ')
             print("\n\033[32m--------------------------------------------")
