@@ -62,9 +62,27 @@ class BattleShip:
         print("\033[0m")
 
 
-    
+    def make_move(self, location):
+        end_of_game = False
+        was_hit = False
+        ship_sank = False
+
+        self.hit_map[location[0], location[1]] = 1
+
+        if np.sum(self.hit_map * self.board ) ==np.sum( self.board):
+            end_of_game = True
+        if self.board[location[0], location[1]] != 0:
+            was_hit = True
+            the_ship = np.where( self.board ==self.board[location[0], location[1]])
+
+            ship_sank=True
+            for x in range(len(the_ship[0])):
+                if self.hit_map[the_ship[0][x],the_ship[1][x]] == 0:
+                    ship_sank = False
+                    break
 
 
+        return end_of_game, was_hit,ship_sank
 class Ship:
     """
     Defines ship objects
