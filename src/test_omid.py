@@ -1,5 +1,6 @@
 from battleship_board.gameboard import *
-
+from src.solvers.RandomSolver import RandomSolver
+from src.solvers.SmartRandomSolver import SmartRandomSolver
 sh1 = Ship( [1,1],2,'h' )
 bt = BattleShip(10,"test")
 bt.add_ship(sh1)
@@ -21,5 +22,19 @@ bt.print_board()
 
 bt2 = BattleShip(10,"test")
 
-bt2.generate_random([2,3,3])
+bt2.generate_random([2,3,3,4,5])
+bt2.print_board()
+
+slv  = RandomSolver( bt2 )
+slv.solve()
+print( slv.stats() )
+
+bt2 = BattleShip(10,"test")
+
+bt2.generate_random([2,3,3,4,5])
+bt2.print_board()
+
+slv  = SmartRandomSolver( bt2 )
+slv.solve()
+print( slv.stats() )
 bt2.print_board()

@@ -3,7 +3,7 @@ from src.battleship_board.gameboard import BattleShip
 from src.solvers.Solver import  Solver
 from timeit import default_timer as timer
 
-class RandomSolver(Solver):
+class SmartRandomSolver(Solver):
     """
     an instance of the solver
     """
@@ -19,9 +19,15 @@ class RandomSolver(Solver):
         :return:
         """
         start = timer()
+        seens = []
         while True:
-            x = random.randint(0,self.board_size - 1)
+            x = random.randint(0, self.board_size - 1)
             y = random.randint(0, self.board_size - 1)
+            if [x,y] in seens:
+                continue
+            else:
+                seens.append([x, y])
+
             self.moves += 1
             if self.board_to_solve.make_move([x, y])[0]:
                 break
