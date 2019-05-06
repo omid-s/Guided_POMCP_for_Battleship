@@ -54,10 +54,15 @@ class BattleShip:
                     print("\033[31m%0.0d \033[32m|" % self.board[i][j] , end=' ')
                 elif self.hit_map[i,j] !=1 and self.board[i,j]!=0:
                     print("\033[34m%0.0d \033[32m|" % self.board[i][j], end=' ')
+                elif self.hit_map[i,j] ==1 and self.board[i,j]==0:
+                    print("\033[37mX \033[32m|", end=' ')
                 else :
-                    print("\033[37m%0.0d \033[32m|" % self.board[i][j], end=' ')
+                    print("  \033[32m|", end=" ")
             print("\n\033[32m--------------------------------------------")
         print("\033[0m")
+
+
+    
 
 
 class Ship:
