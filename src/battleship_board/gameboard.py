@@ -10,8 +10,6 @@ class BattleShip:
         self.ships = []
         self.hit_map = np.zeros((size, size))
 
-
-
     def add_ship(self, the_ship):
         """
         Adds a ship to the board after validating it
@@ -61,8 +59,12 @@ class BattleShip:
             print("\n\033[32m--------------------------------------------")
         print("\033[0m")
 
-
     def make_move(self, location):
+        """
+        will make the move on the board and return reslut
+        :param location:
+        :return:  a touple showing ( end_of_game, was_hit, ship_sank)
+        """
         end_of_game = False
         was_hit = False
         ship_sank = False
@@ -81,8 +83,9 @@ class BattleShip:
                     ship_sank = False
                     break
 
+        return end_of_game, was_hit, ship_sank
 
-        return end_of_game, was_hit,ship_sank
+
 class Ship:
     """
     Defines ship objects
