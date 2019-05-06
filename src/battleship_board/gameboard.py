@@ -35,6 +35,8 @@ class BattleShip:
 
         return 0
 
+    def print_board(self):
+        print(self.board)
 
 class Ship:
     def __init__(self, start, length,orientation, title=None ):
